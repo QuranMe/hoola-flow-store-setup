@@ -10,11 +10,10 @@ export function Footer() {
     support: [
       { label: "Shipping & Returns", href: "#" },
       { label: "Size Guide", href: "#" },
-      { label: "Contact Us", href: "#" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Contact", href: "/contact" },
     ],
     company: [
-      { label: "About Us", href: "#why-hoola" },
+      { label: "About Us", href: "#" },
       { label: "Reviews", href: "#" },
     ],
   };
