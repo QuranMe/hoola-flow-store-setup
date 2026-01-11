@@ -19,13 +19,13 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-foreground text-background py-16 lg:py-20">
+    <footer className="bg-dark-charcoal text-dark-charcoal-foreground py-16 lg:py-20">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <h3 className="font-serif text-3xl mb-4">hoola flow</h3>
-            <p className="text-sm text-background/60 leading-relaxed max-w-xs">
+            <p className="text-sm text-dark-charcoal-foreground/60 leading-relaxed max-w-xs">
               Premium compression activewear designed for recovery and peak performance. 
               Flow through your day with confidence.
             </p>
@@ -39,7 +39,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link 
                     to={link.href} 
-                    className="text-sm text-background/60 hover:text-background transition-colors"
+                    className="text-sm text-dark-charcoal-foreground/60 hover:text-dark-charcoal-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -56,7 +56,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link 
                     to={link.href} 
-                    className="text-sm text-background/60 hover:text-background transition-colors"
+                    className="text-sm text-dark-charcoal-foreground/60 hover:text-dark-charcoal-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -73,7 +73,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link 
                     to={link.href} 
-                    className="text-sm text-background/60 hover:text-background transition-colors"
+                    className="text-sm text-dark-charcoal-foreground/60 hover:text-dark-charcoal-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -83,15 +83,15 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-background/10 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-background/40">
+        <div className="border-t border-dark-charcoal-foreground/10 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-dark-charcoal-foreground/40">
             © 2024 Hoola Flow. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="#" className="text-xs text-background/40 hover:text-background/60 transition-colors">
+            <Link to="#" className="text-xs text-dark-charcoal-foreground/40 hover:text-dark-charcoal-foreground/60 transition-colors">
               Privacy Policy
             </Link>
-            <Link to="#" className="text-xs text-background/40 hover:text-background/60 transition-colors">
+            <Link to="#" className="text-xs text-dark-charcoal-foreground/40 hover:text-dark-charcoal-foreground/60 transition-colors">
               Terms of Service
             </Link>
           </div>
