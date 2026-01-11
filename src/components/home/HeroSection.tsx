@@ -9,7 +9,9 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBanner})` }}
-      />
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
+      </div>
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center min-h-[90vh] py-20 lg:py-0">
           {/* Text Content */}
