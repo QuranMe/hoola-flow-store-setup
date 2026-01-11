@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logoWhiteBlue from "@/assets/logo-white-blue.png";
 
 export function Footer() {
   const footerLinks = {
@@ -24,8 +25,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-serif text-3xl mb-4">hoola flow</h3>
-            <p className="text-sm text-background/60 leading-relaxed max-w-xs">
+            <img src={logoWhiteBlue} alt="Hoola Flow" className="h-8 mb-4" />
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Premium compression activewear designed for recovery and peak performance. 
               Flow through your day with confidence.
             </p>
