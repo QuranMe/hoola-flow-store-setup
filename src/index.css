@@ -9,13 +9,13 @@
   :root {
     /* Core neutrals - warm cream/ivory undertones */
     --background: 40 30% 98%;
-    --foreground: 30 15% 12%;
+    --foreground: 0 0% 0%;
 
     --card: 40 25% 96%;
-    --card-foreground: 30 15% 12%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 15% 12%;
+    --popover-foreground: 0 0% 0%;
 
     /* Brand - Teal #0097b2 */
     --primary: 189 100% 35%;
@@ -31,7 +31,7 @@
 
     /* Accent - Warm taupe/beige for hero backgrounds */
     --accent: 30 25% 82%;
-    --accent-foreground: 30 15% 12%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
