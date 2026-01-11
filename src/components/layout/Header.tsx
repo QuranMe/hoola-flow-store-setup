@@ -76,7 +76,7 @@ export function Header() {
               <img 
                 src={scrolled ? logoWhiteBlue : logoBlackBlue} 
                 alt="Hoola Flow" 
-                className="h-8 lg:h-10 w-auto transition-opacity duration-300"
+                className="h-10 lg:h-12 w-auto transition-opacity duration-300"
               />
             </Link>
 
