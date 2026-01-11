@@ -93,7 +93,7 @@ export function HeroSection() {
       </div>
 
       {/* Press Logos Ticker */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 py-4 overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-[#007a91] via-[#0097b2] to-[#007a91] py-4 overflow-hidden">
         <div className="flex animate-ticker whitespace-nowrap">
           {[...Array(2)].map((_, setIndex) => (
             <div key={setIndex} className="flex items-center gap-20 px-10">
