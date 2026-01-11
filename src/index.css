@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap');
-
 /* Hoola Flow Design System - Premium Wellness (nood-inspired) */
+/* Fonts loaded via index.html: Cormorant Garamond (Museo) + Nunito (Avenir) */
 
 @layer base {
   :root {
@@ -106,21 +105,22 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Nunito', 'Avenir', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Cormorant Garamond', 'Museo', serif;
+    font-weight: 500;
   }
 }
 
 @layer utilities {
   .font-serif {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Cormorant Garamond', 'Museo', serif;
   }
 
   .font-sans {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Nunito', 'Avenir', sans-serif;
   }
 
   .hero-bg {

@@ -1,3 +1,5 @@
+import compressionDiagram from "@/assets/compression-diagram.png";
+
 export function FeaturesSection() {
   return (
     <section className="py-8">
@@ -18,13 +20,14 @@ export function FeaturesSection() {
 
           {/* Features Grid */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Left - Product Diagram Placeholder */}
+            {/* Left - Product Diagram */}
             <div className="relative">
-              <div className="aspect-square bg-background rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <p className="text-muted-foreground text-sm mb-2">Product diagram</p>
-                  <p className="text-xs text-muted-foreground">Compression technology visualization</p>
-                </div>
+              <div className="aspect-square bg-background rounded-2xl flex items-center justify-center overflow-hidden p-8">
+                <img 
+                  src={compressionDiagram} 
+                  alt="Compression technology diagram showing graduated pressure zones" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               
               {/* Feature Callouts */}
@@ -57,7 +60,7 @@ export function FeaturesSection() {
 
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-                  <span className="text-xs">DR</span>
+                  <span className="text-xs font-medium">DR</span>
                 </div>
                 <div>
                   <p className="font-medium">Dr. Sarah Mitchell, MD</p>

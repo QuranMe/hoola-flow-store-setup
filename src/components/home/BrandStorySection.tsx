@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import brandStoryImage from "@/assets/brand-story-1.jpg";
 
 export function BrandStorySection() {
   return (
@@ -7,10 +8,12 @@ export function BrandStorySection() {
         <div className="relative rounded-3xl overflow-hidden bg-secondary min-h-[500px] lg:min-h-[600px]">
           <div className="grid lg:grid-cols-2 h-full">
             {/* Image Side */}
-            <div className="relative h-64 lg:h-full bg-gradient-to-br from-muted to-secondary">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground text-sm">Lifestyle imagery</p>
-              </div>
+            <div className="relative h-64 lg:h-full overflow-hidden">
+              <img 
+                src={brandStoryImage} 
+                alt="Woman relaxing in compression wear after workout" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Content Side */}
