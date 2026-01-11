@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-main.jpg";
+import heroBanner from "@/assets/hero-banner.jpg";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] gradient-hero overflow-hidden">
+    <section className="relative min-h-[90vh] overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBanner})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+      </div>
       <div className="container mx-auto px-6 h-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[90vh] py-20 lg:py-0">
           {/* Text Content */}
