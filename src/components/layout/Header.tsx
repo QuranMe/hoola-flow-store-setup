@@ -67,7 +67,7 @@ export function Header() {
       <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${
         scrolled 
           ? "bg-foreground/75 backdrop-blur-md border-transparent" 
-          : "bg-background border-border"
+          : "bg-transparent border-transparent"
       }`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16 lg:h-20">
