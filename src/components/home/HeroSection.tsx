@@ -11,14 +11,14 @@ export function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-[30px] lg:hidden"
         style={{ backgroundImage: `url(${heroBannerMobile})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/10 via-transparent to-transparent w-1/3 rounded-[30px]" />
+        <div className="absolute inset-0 bg-black/20 rounded-[30px]" />
       </div>
       {/* Background Image - Desktop */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-[30px] hidden lg:block"
         style={{ backgroundImage: `url(${heroBannerDesktop})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/10 via-transparent to-transparent w-1/3 rounded-[30px]" />
+        <div className="absolute inset-0 bg-black/20 rounded-[30px]" />
       </div>
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center min-h-[90vh] py-20 lg:py-0">
