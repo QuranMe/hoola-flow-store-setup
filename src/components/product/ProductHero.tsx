@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Star, ShoppingBag, Play } from "lucide-react";
 import { toast } from "sonner";
+import { StickyAddToCart } from "./StickyAddToCart";
 
 // Fallback images for when Shopify images aren't available
 import productImg1 from "@/assets/product-knee-sleeve-1.jpg";
@@ -18,6 +19,7 @@ interface ProductHeroProps {
 }
 
 export function ProductHero({ product }: ProductHeroProps) {
+  const ctaRef = useRef<HTMLDivElement>(null);
   const [selectedVariant, setSelectedVariant] = useState<string>(
     product.variants.edges[0]?.node.id || ""
   );
@@ -198,7 +200,7 @@ export function ProductHero({ product }: ProductHeroProps) {
             </div>
 
             {/* Quantity + Add to Cart */}
-            <div className="flex gap-4 mb-6">
+            <div ref={ctaRef} className="flex gap-4 mb-6">
               <div className="flex items-center border border-border rounded-lg">
                 <Button
                   variant="ghost"
@@ -277,6 +279,14 @@ export function ProductHero({ product }: ProductHeroProps) {
           </div>
         </div>
       </div>
+
+      {/* Sticky Add to Cart Bar */}
+      <StickyAddToCart
+        product={product}
+        selectedVariant={selectedVariant}
+        selectedOptions={selectedOptions}
+        ctaRef={ctaRef}
+      />
     </section>
   );
 }
