@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cartStore";
 import { useState, useEffect } from "react";
 import { CartDrawer } from "@/components/cart/CartDrawer";
-
+import logoBlackBlue from "@/assets/logo-black-blue.png";
+import logoWhiteBlue from "@/assets/logo-white-blue.png";
 const promoMessages = [
   "✨ Free shipping on orders over $150 ✨",
   "✨ Save up to $50 on bundles ✨",
@@ -72,9 +73,11 @@ export function Header() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0">
-              <h1 className={`font-serif text-2xl lg:text-3xl tracking-tight transition-colors duration-300 ${
-                scrolled ? "text-background" : "text-foreground"
-              }`}>hoola flow</h1>
+              <img 
+                src={scrolled ? logoWhiteBlue : logoBlackBlue} 
+                alt="Hoola Flow" 
+                className="h-8 lg:h-10 w-auto transition-opacity duration-300"
+              />
             </Link>
 
             {/* Navigation - Desktop */}
