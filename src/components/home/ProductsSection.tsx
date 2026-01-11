@@ -3,6 +3,7 @@ import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 export function ProductsSection() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -54,32 +55,36 @@ export function ProductsSection() {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="font-serif text-4xl md:text-5xl">bestsellers</h2>
-          
-          {/* Carousel Controls */}
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full h-12 w-12 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="default"
-              size="icon"
-              className="rounded-full h-12 w-12"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+        <AnimatedSection animation="fade-up">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="font-serif text-4xl md:text-5xl">bestsellers</h2>
+            
+            {/* Carousel Controls */}
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full h-12 w-12 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <Button
+                variant="default"
+                size="icon"
+                className="rounded-full h-12 w-12"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {products.slice(0, 4).map((product, index) => (
-            <ProductCard key={product.node.id} product={product} index={index} />
+            <AnimatedSection key={product.node.id} animation="fade-up" delay={index * 100}>
+              <ProductCard product={product} index={index} />
+            </AnimatedSection>
           ))}
         </div>
       </div>

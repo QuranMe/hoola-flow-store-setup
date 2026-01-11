@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 const faqs = [
   {
@@ -42,29 +43,33 @@ export function FAQSection() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-12 leading-tight">
-            <span className="italic">If you like getting into the weeds,</span>
-            <br />
-            <strong>here's everything behind our gear.</strong>
-          </h2>
+          <AnimatedSection animation="fade-up">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-12 leading-tight">
+              <span className="italic">If you like getting into the weeds,</span>
+              <br />
+              <strong>here's everything behind our gear.</strong>
+            </h2>
+          </AnimatedSection>
 
           {/* FAQ Accordion */}
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="border-t border-border last:border-b py-2"
-              >
-                <AccordionTrigger className="text-left text-base md:text-lg font-medium hover:no-underline py-6">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <AnimatedSection animation="fade-up" delay={200}>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="border-t border-border last:border-b py-2"
+                >
+                  <AccordionTrigger className="text-left text-base md:text-lg font-medium hover:no-underline py-6">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </AnimatedSection>
         </div>
       </div>
     </section>

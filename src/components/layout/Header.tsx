@@ -99,13 +99,6 @@ export function Header() {
             {/* Right actions */}
             <div className="flex items-center gap-3">
               <Button
-                variant="outline"
-                className="hidden lg:flex rounded-full text-xs font-medium uppercase tracking-[0.1em] px-5"
-              >
-                Login
-              </Button>
-              
-              <Button
                 variant="ghost"
                 size="icon"
                 className="relative"

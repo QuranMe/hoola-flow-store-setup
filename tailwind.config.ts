@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['Cormorant Garamond', 'Museo', 'serif'],
+        serif: ['Museo Moderno', 'sans-serif'],
         sans: ['Nunito', 'Avenir', 'sans-serif'],
       },
       colors: {
