@@ -16,7 +16,7 @@ export function HeroSection() {
         <div className="flex items-center min-h-[90vh] py-20 lg:py-0">
           {/* Text Content */}
           <div className="max-w-xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <p className="text-lg md:text-xl font-semibold uppercase tracking-wider mb-6 text-white">
+            <p className="text-base md:text-lg font-semibold uppercase tracking-wider mb-6 text-white">
               Compression Recovery Activewear
             </p>
             
