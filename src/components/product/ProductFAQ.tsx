@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "What's your return policy?",
     answer:
-      "We offer a 30-day money-back guarantee. If you're not completely satisfied with your purchase, simply return it for a full refund. The product must be in original condition. Return shipping is free for customers in the US.",
+      "We offer a 60-day money-back guarantee. If you're not completely satisfied with your purchase, simply return it for a full refund. The product must be in original condition. Return shipping is free for customers in the US.",
   },
   {
     question: "How quickly will I receive my order?",
