@@ -43,7 +43,7 @@ export function Header() {
   return (
     <>
       {/* Promo Bar */}
-      <div className="bg-foreground text-background py-2.5 relative">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-foreground text-background py-2.5">
         <div className="container mx-auto px-6 flex items-center justify-center">
           <button 
             onClick={prevPromo}
@@ -64,9 +64,9 @@ export function Header() {
       </div>
 
       {/* Main Header */}
-      <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+      <header className={`fixed top-10 left-0 right-0 z-50 border-b transition-all duration-300 ${
         scrolled 
-          ? "bg-foreground/75 backdrop-blur-md border-transparent" 
+          ? "!top-0 bg-foreground/75 backdrop-blur-md border-transparent" 
           : "bg-transparent border-transparent"
       }`}>
         <div className="container mx-auto px-6">
