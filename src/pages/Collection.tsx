@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowLeft } from "lucide-react";
 
 const collectionInfo: Record<string, { title: string; description: string; query: string }> = {
   recovery: {
@@ -48,13 +48,21 @@ export default function Collection() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20 lg:pt-24">
+      <main>
         {/* Collection Header */}
-        <section className="py-16 lg:py-24 hero-gradient">
+        <section className="gradient-hero section-padding">
           <div className="container mx-auto px-6">
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </Link>
             <div className="max-w-2xl">
-              <h1 className="font-serif text-5xl lg:text-6xl mb-4">{collection.title}</h1>
-              <p className="text-lg text-muted-foreground">
+              <p className="section-label mb-4">Shop Collection</p>
+              <h1 className="font-serif text-5xl lg:text-6xl mb-6">{collection.title}</h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 {collection.description}
               </p>
             </div>
@@ -62,15 +70,15 @@ export default function Collection() {
         </section>
 
         {/* Products Grid */}
-        <section className="py-12 lg:py-20">
+        <section className="section-padding gradient-subtle">
           <div className="container mx-auto px-6">
             {loading ? (
               <div className="flex items-center justify-center py-20">
                 <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
               </div>
             ) : products.length === 0 ? (
-              <div className="text-center py-20 bg-secondary/50 rounded-sm">
-                <p className="text-muted-foreground mb-2">No products found in this collection</p>
+              <div className="text-center py-20 bg-secondary/50 rounded-2xl">
+                <p className="text-lg text-muted-foreground mb-2">No products found in this collection</p>
                 <p className="text-sm text-muted-foreground">
                   Tell me what products you'd like to add!
                 </p>
