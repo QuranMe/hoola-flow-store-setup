@@ -17,9 +17,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 30 15% 12%;
 
-    /* Brand - Testing Red */
-    --primary: 0 55% 59%;
-    --primary-foreground: 0 0% 100%;
+    /* Brand - Rich warm amber/gold for CTAs */
+    --primary: 38 90% 55%;
+    --primary-foreground: 30 15% 8%;
 
     /* Secondary - Soft warm cream */
     --secondary: 40 25% 94%;
