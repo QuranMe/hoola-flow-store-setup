@@ -44,7 +44,7 @@ export function HeroSection() {
                 to="/collections/recovery"
                 className="btn-primary inline-flex items-center gap-2"
               >
-                Shop Recovery
+                RECOVERY SHOP
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
