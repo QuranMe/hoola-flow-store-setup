@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import heroBanner from "@/assets/hero-banner-active.jpg";
+import heroBannerDesktop from "@/assets/hero-banner-landscape.png";
 
 export function HeroSection() {
   return (
@@ -8,7 +8,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-[30px]"
-        style={{ backgroundImage: `url(${heroBanner})` }}
+        style={{ backgroundImage: `url(${heroBannerDesktop})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-background/10 via-transparent to-transparent w-1/3 rounded-[30px]" />
       </div>
