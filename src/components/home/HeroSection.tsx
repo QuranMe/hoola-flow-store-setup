@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-main.jpg";
 
 export function HeroSection() {
   return (
@@ -30,12 +31,14 @@ export function HeroSection() {
             </Link>
           </div>
 
-          {/* Hero Image Placeholder - Will show product imagery */}
-          <div className="relative hidden lg:block">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[500px] h-[600px] bg-gradient-to-br from-secondary/50 to-muted/30 rounded-3xl flex items-center justify-center">
-                <p className="text-muted-foreground text-sm">Product imagery</p>
-              </div>
+          {/* Hero Image */}
+          <div className="relative hidden lg:flex items-center justify-center">
+            <div className="relative w-full max-w-[550px]">
+              <img 
+                src={heroImage} 
+                alt="Woman in sage green compression wear doing yoga stretch" 
+                className="w-full h-auto rounded-3xl object-cover shadow-2xl"
+              />
             </div>
           </div>
         </div>
