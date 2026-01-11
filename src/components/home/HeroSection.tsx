@@ -4,13 +4,13 @@ import heroBanner from "@/assets/hero-banner-active.jpg";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] overflow-hidden">
+    <section className="relative min-h-[90vh] lg:min-h-screen overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBanner})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/10 via-transparent to-transparent w-1/3" />
       </div>
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center min-h-[90vh] py-20 lg:py-0">
