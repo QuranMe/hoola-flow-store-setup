@@ -52,12 +52,11 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-border/50">
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-primary/20 border-2 border-background"
-                    />
-                  ))}
+                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer" className="w-8 h-8 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" className="w-8 h-8 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" className="w-8 h-8 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Customer" className="w-8 h-8 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/women/56.jpg" alt="Customer" className="w-8 h-8 rounded-full border-2 border-background object-cover" />
                 </div>
                 <span className="text-sm text-muted-foreground">
                   <strong className="text-foreground">50,000+</strong> Happy Customers
