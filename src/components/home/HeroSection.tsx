@@ -16,7 +16,7 @@ export function HeroSection() {
         <div className="flex items-center min-h-[90vh] py-20 lg:py-0">
           {/* Text Content */}
           <div className="max-w-xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <p className="section-label mb-6 text-white/80">
+            <p className="text-lg md:text-xl font-semibold uppercase tracking-wider mb-6 text-white">
               Compression Recovery Activewear
             </p>
             
@@ -26,7 +26,7 @@ export function HeroSection() {
               <span className="italic font-normal">Recover</span> Faster.
             </h1>
             
-            <p className="text-lg text-white/80 max-w-md mb-10 leading-relaxed">
+            <p className="text-lg text-white max-w-md mb-10 leading-relaxed">
               Targeted compression that helps reduce pain, improve circulation, 
               and support your body — whether you're active, recovering, or on your feet all day.
             </p>
