@@ -68,31 +68,25 @@ export function Header() {
                 to="/collections/all"
                 className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full hover:bg-foreground/90 transition-colors"
               >
-                Shop
+                SHOP
               </Link>
               <Link 
                 to="/collections/recovery" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+                className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
               >
-                Recovery
+                RECOVERY
               </Link>
               <Link 
                 to="/collections/performance" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+                className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
               >
-                Performance
+                PERFORMANCE
               </Link>
               <Link 
-                to="#why-hoola" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+                to="/contact" 
+                className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
               >
-                Why Hoola Flow
-              </Link>
-              <Link 
-                to="#faq" 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
-              >
-                FAQs
+                CONTACT
               </Link>
             </nav>
 
@@ -131,38 +125,31 @@ export function Header() {
             <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
               <Link 
                 to="/collections/all"
-                className="bg-foreground text-background text-sm font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
+                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Shop All
+                SHOP
               </Link>
               <Link 
                 to="/collections/recovery" 
-                className="text-sm font-medium py-2 border-b border-border"
+                className="text-xs font-medium uppercase tracking-[0.1em] py-2 border-b border-border"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Recovery
+                RECOVERY
               </Link>
               <Link 
                 to="/collections/performance" 
-                className="text-sm font-medium py-2 border-b border-border"
+                className="text-xs font-medium uppercase tracking-[0.1em] py-2 border-b border-border"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Performance
+                PERFORMANCE
               </Link>
               <Link 
-                to="#why-hoola" 
-                className="text-sm font-medium py-2 border-b border-border"
+                to="/contact" 
+                className="text-xs font-medium uppercase tracking-[0.1em] py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Why Hoola Flow
-              </Link>
-              <Link 
-                to="#faq" 
-                className="text-sm font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                FAQs
+                CONTACT
               </Link>
             </nav>
           </div>
