@@ -19,7 +19,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-foreground text-background py-16 lg:py-20">
+    <footer className="bg-black text-white py-16 lg:py-20">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand */}
