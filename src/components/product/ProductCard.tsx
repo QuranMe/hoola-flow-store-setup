@@ -64,7 +64,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           
           {/* Save Badge */}
           <div className="absolute top-3 left-3">
-            <span className="bg-foreground text-background text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-full">
+            <span className="bg-promo text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-full">
               Save {savePercent}%
             </span>
           </div>
