@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-main.jpg";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 export function HeroSection() {
@@ -10,11 +9,9 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBanner})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
-      </div>
+      />
       <div className="container mx-auto px-6 h-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[90vh] py-20 lg:py-0">
+        <div className="flex items-center min-h-[90vh] py-20 lg:py-0">
           {/* Text Content */}
           <div className="max-w-xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <p className="section-label mb-6">
@@ -73,26 +70,6 @@ export function HeroSection() {
                   </svg>
                 ))}
                 <span className="text-sm text-muted-foreground ml-1">4.9/5</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          <div 
-            className="relative hidden lg:flex items-center justify-center animate-fade-in-up"
-            style={{ animationDelay: '0.3s' }}
-          >
-            <div className="relative w-full max-w-[520px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-[2rem] -rotate-3 scale-105" />
-              <img 
-                src={heroImage} 
-                alt="Woman in sage green compression wear doing yoga stretch" 
-                className="w-full h-auto rounded-[2rem] object-cover shadow-elevated relative z-10"
-              />
-              {/* Floating Badge */}
-              <div className="absolute -bottom-4 -left-4 bg-background rounded-xl shadow-elevated px-4 py-3 z-20">
-                <p className="text-xs text-muted-foreground">Free Shipping</p>
-                <p className="font-semibold">Orders $100+</p>
               </div>
             </div>
           </div>
