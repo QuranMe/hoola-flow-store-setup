@@ -9,18 +9,18 @@ export function HeroSection() {
           {/* Text Content */}
           <div className="max-w-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <p className="section-label mb-6">
-              Premium Compression Wear
+              Compression Recovery Activewear
             </p>
             
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6">
-              Your Best
+              Move Freely.
               <br />
-              <span className="italic">Recovery</span> Yet
+              <span className="italic">Recover</span> Faster.
             </h1>
             
             <p className="text-lg text-muted-foreground max-w-md mb-10">
-              Engineered compression wear for athletes who demand more. 
-              Feel the flow, embrace recovery.
+              Targeted compression that helps reduce pain, improve circulation, 
+              and support your body — whether you're active, recovering, or on your feet all day.
             </p>
             
             <Link 

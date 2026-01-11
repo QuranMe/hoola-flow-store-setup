@@ -26,15 +26,15 @@ export function BrandStorySection() {
               </Link>
 
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-6">
-                we know
+                designed for
                 <br />
-                <span className="italic">compression</span>
+                <span className="italic">real life</span>
               </h2>
 
               <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
-                With scientifically-engineered compression technology and 
-                athlete-backed designs, we're here to make recovery less 
-                of a chore—so you can feel more confident in your performance.
+                Whether you're hitting the gym, on your feet all day at work, 
+                or simply want to stay active without pain — Hoola Flow helps 
+                you move better and recover faster. Not just for athletes.
               </p>
             </div>
           </div>
