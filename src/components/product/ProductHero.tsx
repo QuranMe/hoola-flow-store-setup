@@ -157,7 +157,7 @@ export function ProductHero({ product }: ProductHeroProps) {
             <div className="flex items-baseline gap-3 mb-6">
               <span className="text-3xl font-semibold">${price}</span>
               <span className="text-lg text-muted-foreground line-through">$69.99</span>
-              <span className="bg-primary/10 text-primary text-sm font-medium px-2 py-1 rounded">
+              <span className="bg-promo text-white text-sm font-medium px-2 py-1 rounded">
                 Save 29%
               </span>
             </div>
