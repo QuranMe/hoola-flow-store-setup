@@ -94,7 +94,7 @@ export default function Collection() {
       <Header />
       <main>
         {/* Collection Header */}
-        <section className="gradient-hero section-padding">
+        <section className="gradient-hero-blue section-padding">
           <div className="container mx-auto px-6">
             <Link 
               to="/" 
