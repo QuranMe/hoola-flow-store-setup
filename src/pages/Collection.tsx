@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { Loader2, ArrowLeft } from "lucide-react";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
-
+import collectionHeroImage from "@/assets/collection-hero-couple.jpg";
 const collectionInfo: Record<string, { title: string; description: string; query: string; hasSubsections?: boolean }> = {
   recovery: {
     title: "Recovery",
@@ -103,12 +103,21 @@ export default function Collection() {
               <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Link>
-            <div className="max-w-2xl">
-              <p className="section-label mb-4">Shop Collection</p>
-              <h1 className="font-serif text-5xl lg:text-6xl mb-6">{collection.title}</h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {collection.description}
-              </p>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+              <div className="max-w-2xl">
+                <p className="section-label mb-4">Shop Collection</p>
+                <h1 className="font-serif text-5xl lg:text-6xl mb-6">{collection.title}</h1>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {collection.description}
+                </p>
+              </div>
+              <div className="lg:w-1/2 flex-shrink-0">
+                <img 
+                  src={collectionHeroImage} 
+                  alt="Couple relaxing while wearing compression sleeves"
+                  className="w-full h-auto rounded-2xl shadow-lg object-cover max-h-80 lg:max-h-96"
+                />
+              </div>
             </div>
           </div>
         </section>
