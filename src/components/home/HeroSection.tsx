@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import heroBanner from "@/assets/hero-banner-couple.jpg";
+import heroBanner from "@/assets/hero-banner-active.jpg";
 
 export function HeroSection() {
   return (
