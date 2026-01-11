@@ -33,7 +33,7 @@ export function Header() {
   return (
     <>
       {/* Promo Bar */}
-      <div className="bg-primary text-primary-foreground py-2.5 relative">
+      <div className="bg-foreground text-background py-2.5 relative">
         <div className="container mx-auto px-6 flex items-center justify-center">
           <button 
             onClick={prevPromo}

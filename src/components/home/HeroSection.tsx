@@ -93,18 +93,18 @@ export function HeroSection() {
       </div>
 
       {/* Press Logos Ticker */}
-      <div className="absolute bottom-0 left-0 right-0 bg-primary py-4 overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 bg-foreground py-4 overflow-hidden">
         <div className="flex animate-ticker whitespace-nowrap">
           {[...Array(2)].map((_, setIndex) => (
             <div key={setIndex} className="flex items-center gap-20 px-10">
-              <span className="font-serif text-xl text-primary-foreground/90">Vogue</span>
-              <span className="font-serif text-xl text-primary-foreground/90 italic">Forbes</span>
-              <span className="font-serif text-xl text-primary-foreground/90">GQ</span>
-              <span className="font-serif text-xl text-primary-foreground/90 italic">Elle</span>
-              <span className="font-serif text-xl text-primary-foreground/90">Men's Health</span>
-              <span className="font-serif text-xl text-primary-foreground/90 italic">WSJ</span>
-              <span className="font-serif text-xl text-primary-foreground/90">Hypebeast</span>
-              <span className="font-serif text-xl text-primary-foreground/90 italic">Runner's World</span>
+              <span className="font-serif text-xl text-background/90">Vogue</span>
+              <span className="font-serif text-xl text-background/90 italic">Forbes</span>
+              <span className="font-serif text-xl text-background/90">GQ</span>
+              <span className="font-serif text-xl text-background/90 italic">Elle</span>
+              <span className="font-serif text-xl text-background/90">Men's Health</span>
+              <span className="font-serif text-xl text-background/90 italic">WSJ</span>
+              <span className="font-serif text-xl text-background/90">Hypebeast</span>
+              <span className="font-serif text-xl text-background/90 italic">Runner's World</span>
             </div>
           ))}
         </div>
