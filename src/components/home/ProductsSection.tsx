@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "@/components/product/ProductCard";
-import { Loader2 } from "lucide-react";
+import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ProductsSection() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -24,7 +24,7 @@ export function ProductsSection() {
 
   if (loading) {
     return (
-      <section className="py-20 lg:py-32">
+      <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center py-20">
             <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
@@ -36,19 +36,13 @@ export function ProductsSection() {
 
   if (products.length === 0) {
     return (
-      <section className="py-20 lg:py-32">
+      <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl lg:text-5xl mb-4">Our Products</h2>
-            <p className="text-muted-foreground max-w-md mx-auto">
-              Curated compression wear for every moment of your day.
-            </p>
-          </div>
-
-          <div className="text-center py-20 bg-secondary/50 rounded-sm">
-            <p className="text-muted-foreground mb-2">No products found</p>
-            <p className="text-sm text-muted-foreground">
-              Tell me what products you'd like to add to your store!
+          <h2 className="font-serif text-4xl md:text-5xl mb-4">bestsellers</h2>
+          <div className="py-16 text-center">
+            <p className="text-muted-foreground text-lg">No products found</p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Add your first product by telling us what you'd like to sell!
             </p>
           </div>
         </div>
@@ -57,22 +51,35 @@ export function ProductsSection() {
   }
 
   return (
-    <section className="py-20 lg:py-32">
+    <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl lg:text-5xl mb-4">Our Products</h2>
-          <p className="text-muted-foreground max-w-md mx-auto">
-            Curated compression wear for every moment of your day.
-          </p>
+        {/* Section Header */}
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="font-serif text-4xl md:text-5xl">bestsellers</h2>
+          
+          {/* Carousel Controls */}
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full h-12 w-12 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="default"
+              size="icon"
+              className="rounded-full h-12 w-12"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-          {products.map((product, index) => (
-            <ProductCard 
-              key={product.node.id} 
-              product={product} 
-              index={index}
-            />
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {products.slice(0, 4).map((product, index) => (
+            <ProductCard key={product.node.id} product={product} index={index} />
           ))}
         </div>
       </div>
