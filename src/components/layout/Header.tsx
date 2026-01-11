@@ -66,7 +66,7 @@ export function Header() {
       {/* Main Header */}
       <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${
         scrolled 
-          ? "bg-foreground/90 backdrop-blur-md border-transparent" 
+          ? "bg-foreground/75 backdrop-blur-md border-transparent" 
           : "bg-background border-border"
       }`}>
         <div className="container mx-auto px-6">
