@@ -49,6 +49,8 @@
     --success: 145 70% 40%;
     --gradient-start: 38 90% 60%;
     --gradient-end: 30 80% 50%;
+    --dark-charcoal: 0 0% 26%;
+    --dark-charcoal-foreground: 0 0% 100%;
 
     /* Sidebar variables */
     --sidebar-background: 40 25% 97%;
