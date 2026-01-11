@@ -25,7 +25,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <img src={logoWhiteBlue} alt="Hoola Flow" className="h-10 mb-4" />
+            <img src={logoWhiteBlue} alt="Hoola Flow" className="h-[3.75rem] mb-4" />
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Premium compression activewear designed for recovery and peak performance. 
               Flow through your day with confidence.
