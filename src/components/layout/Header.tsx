@@ -14,6 +14,7 @@ const promoMessages = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const totalItems = useCartStore((state) => state.getTotalItems());
   const setCartOpen = useCartStore((state) => state.setOpen);
 
@@ -28,6 +29,14 @@ export function Header() {
   useEffect(() => {
     const interval = setInterval(nextPromo, 5000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -54,37 +63,59 @@ export function Header() {
       </div>
 
       {/* Main Header */}
-      <header className="sticky top-0 z-50 bg-background border-b border-border">
+      <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        scrolled 
+          ? "bg-foreground/90 backdrop-blur-md border-transparent" 
+          : "bg-background border-border"
+      }`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0">
-              <h1 className="font-serif text-2xl lg:text-3xl tracking-tight">hoola flow</h1>
+              <h1 className={`font-serif text-2xl lg:text-3xl tracking-tight transition-colors duration-300 ${
+                scrolled ? "text-background" : "text-foreground"
+              }`}>hoola flow</h1>
             </Link>
 
             {/* Navigation - Desktop */}
             <nav className="hidden lg:flex items-center gap-2">
               <Link 
                 to="/collections/all"
-                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full hover:bg-foreground/90 transition-colors"
+                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
+                  scrolled 
+                    ? "bg-background text-foreground hover:bg-background/90" 
+                    : "bg-foreground text-background hover:bg-foreground/90"
+                }`}
               >
                 SHOP
               </Link>
               <Link 
                 to="/collections/recovery" 
-                className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+                className={`text-xs font-medium uppercase tracking-[0.1em] transition-colors px-4 py-2 ${
+                  scrolled 
+                    ? "text-background/70 hover:text-background" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 RECOVERY
               </Link>
               <Link 
                 to="/collections/performance" 
-                className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+                className={`text-xs font-medium uppercase tracking-[0.1em] transition-colors px-4 py-2 ${
+                  scrolled 
+                    ? "text-background/70 hover:text-background" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 PERFORMANCE
               </Link>
               <Link 
                 to="/contact" 
-                className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors px-4 py-2"
+                className={`text-xs font-medium uppercase tracking-[0.1em] transition-colors px-4 py-2 ${
+                  scrolled 
+                    ? "text-background/70 hover:text-background" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 CONTACT
               </Link>
@@ -95,12 +126,14 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="relative"
+                className={`relative transition-colors ${scrolled ? "text-background hover:bg-background/10" : ""}`}
                 onClick={() => setCartOpen(true)}
               >
                 <ShoppingBag className="h-5 w-5" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium">
+                  <span className={`absolute -top-1 -right-1 h-5 w-5 rounded-full text-xs flex items-center justify-center font-medium ${
+                    scrolled ? "bg-background text-foreground" : "bg-primary text-primary-foreground"
+                  }`}>
                     {totalItems}
                   </span>
                 )}
@@ -110,7 +143,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden"
+                className={`lg:hidden transition-colors ${scrolled ? "text-background hover:bg-background/10" : ""}`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
