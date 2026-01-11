@@ -8,10 +8,10 @@ export function FeaturesSection() {
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl italic mb-4">
-              why it's better
+              why it works
             </h2>
             <p className="section-label">
-              Medical-Grade, Athlete Tested, Performance Proven
+              Instant Relief You Can Feel
             </p>
           </div>
 
@@ -32,43 +32,47 @@ export function FeaturesSection() {
               
               {/* Feature Callouts */}
               <div className="absolute top-8 left-8">
-                <p className="section-label">Targeted</p>
-                <p className="section-label">Compression</p>
+                <p className="section-label">Improves</p>
+                <p className="section-label">Blood Flow</p>
               </div>
               <div className="absolute bottom-8 left-8">
-                <p className="section-label">Moisture</p>
-                <p className="section-label">Wicking</p>
+                <p className="section-label">All-Day</p>
+                <p className="section-label">Comfort</p>
               </div>
             </div>
 
             {/* Right - Feature Card */}
             <div className="bg-primary rounded-2xl p-8 lg:p-12 text-primary-foreground flex flex-col justify-center">
               <p className="section-label mb-4 text-primary-foreground/80">
-                Scientifically Engineered
+                Targeted Compression Technology
               </p>
               
               <h3 className="font-serif text-3xl md:text-4xl mb-6">
-                GradientFlow™ Compression
+                Helps Reduce Pain & Supports Recovery
               </h3>
 
-              <p className="text-primary-foreground/90 leading-relaxed mb-8">
-                "GradientFlow™ compression applies graduated pressure from 
-                extremities toward the heart, which is up to <strong>3x more effective</strong> 
-                than standard compression.* This promotes better blood flow 
-                and faster muscle recovery for peak athletic performance."
-              </p>
+              <ul className="space-y-4 text-primary-foreground/90 leading-relaxed mb-8">
+                <li className="flex items-start gap-3">
+                  <span className="text-accent mt-1">✓</span>
+                  <span>Targeted compression for joints & muscles</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-accent mt-1">✓</span>
+                  <span>Improves blood flow & recovery</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-accent mt-1">✓</span>
+                  <span>All-day comfort — breathable & flexible</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-accent mt-1">✓</span>
+                  <span>Designed for real life, not just athletes</span>
+                </li>
+              </ul>
 
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-                  <span className="text-xs font-medium">DR</span>
-                </div>
-                <div>
-                  <p className="font-medium">Dr. Sarah Mitchell, MD</p>
-                  <p className="text-sm text-primary-foreground/70 uppercase tracking-wide">
-                    Sports Medicine Specialist
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-primary-foreground/60 italic">
+                *Helps reduce discomfort. Not intended to treat or cure any medical condition.
+              </p>
             </div>
           </div>
         </div>

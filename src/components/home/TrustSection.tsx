@@ -13,14 +13,14 @@ export function TrustSection() {
 
         {/* Label */}
         <p className="section-label text-center mb-4">
-          Real Athletes, Real Results
+          Active Everyday People Trust Us
         </p>
 
         {/* Main Headline */}
         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-center leading-tight max-w-4xl mx-auto">
-          trusted by over
+          helping over
           <br />
-          <span className="underline-accent">50,000</span> athletes
+          <span className="underline-accent">50,000</span> people move better
         </h2>
       </div>
     </section>
