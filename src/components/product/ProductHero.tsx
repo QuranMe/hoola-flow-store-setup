@@ -284,7 +284,7 @@ export function ProductHero({ product }: ProductHeroProps) {
             </div>
 
             {/* Trust Badges */}
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -295,13 +295,17 @@ export function ProductHero({ product }: ProductHeroProps) {
                 <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                30-Day Guarantee
+                60-Day Guarantee
               </span>
-              <span className="flex items-center gap-1.5">
-                <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                50,000+ Happy Customers
+              <span className="flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Customer" className="w-6 h-6 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Customer" className="w-6 h-6 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Customer" className="w-6 h-6 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Customer" className="w-6 h-6 rounded-full border-2 border-background object-cover" />
+                  <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Customer" className="w-6 h-6 rounded-full border-2 border-background object-cover" />
+                </div>
+                <span>50,000+ Happy Customers</span>
               </span>
             </div>
           </div>

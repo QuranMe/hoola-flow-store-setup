@@ -5,7 +5,7 @@ export function TrustSection() {
   const stats = [
     { value: "50,000+", label: "Happy Customers" },
     { value: "4.9", label: "Average Rating" },
-    { value: "30-Day", label: "Money Back Guarantee" },
+    { value: "60-Day", label: "Money Back Guarantee" },
   ];
 
   return (
