@@ -17,9 +17,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 30 15% 12%;
 
-    /* Brand - Rich warm amber/gold for CTAs */
-    --primary: 38 90% 55%;
-    --primary-foreground: 30 15% 8%;
+    /* Brand - Teal #0097b2 */
+    --primary: 189 100% 35%;
+    --primary-foreground: 0 0% 100%;
 
     /* Secondary - Soft warm cream */
     --secondary: 40 25% 94%;
@@ -38,27 +38,27 @@
 
     --border: 35 20% 88%;
     --input: 35 20% 88%;
-    --ring: 38 90% 50%;
+    --ring: 189 100% 35%;
 
     --radius: 0.75rem;
 
     /* Custom Hoola Flow tokens */
     --hero-bg: 30 30% 85%;
-    --promo-bar: 38 90% 55%;
+    --promo-bar: 189 100% 35%;
     --section-bg: 40 25% 96%;
     --success: 145 70% 40%;
-    --gradient-start: 38 90% 60%;
-    --gradient-end: 30 80% 50%;
+    --gradient-start: 189 100% 40%;
+    --gradient-end: 189 80% 30%;
 
     /* Sidebar variables */
     --sidebar-background: 40 25% 97%;
     --sidebar-foreground: 30 15% 20%;
-    --sidebar-primary: 38 90% 55%;
-    --sidebar-primary-foreground: 30 15% 8%;
+    --sidebar-primary: 189 100% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 40 25% 94%;
     --sidebar-accent-foreground: 30 15% 20%;
     --sidebar-border: 35 20% 88%;
-    --sidebar-ring: 38 90% 50%;
+    --sidebar-ring: 189 100% 35%;
   }
 
   .dark {
@@ -71,8 +71,8 @@
     --popover: 30 12% 10%;
     --popover-foreground: 40 20% 95%;
 
-    --primary: 38 90% 55%;
-    --primary-foreground: 30 15% 6%;
+    --primary: 189 100% 35%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 30 10% 15%;
     --secondary-foreground: 40 15% 90%;
@@ -88,16 +88,16 @@
 
     --border: 30 10% 20%;
     --input: 30 10% 20%;
-    --ring: 38 90% 55%;
+    --ring: 189 100% 35%;
 
     --sidebar-background: 30 12% 8%;
     --sidebar-foreground: 40 15% 90%;
-    --sidebar-primary: 38 90% 55%;
-    --sidebar-primary-foreground: 30 15% 6%;
+    --sidebar-primary: 189 100% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 30 10% 15%;
     --sidebar-accent-foreground: 40 15% 90%;
     --sidebar-border: 30 10% 20%;
-    --sidebar-ring: 38 90% 55%;
+    --sidebar-ring: 189 100% 35%;
   }
 }
 
