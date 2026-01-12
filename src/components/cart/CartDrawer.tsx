@@ -42,9 +42,9 @@ export function CartDrawer() {
     <Sheet open={isOpen} onOpenChange={setOpen}>
       <SheetContent className="w-full sm:max-w-md flex flex-col h-full">
         <SheetHeader className="flex-shrink-0">
-          <SheetTitle className="font-serif text-xl">Your Bag</SheetTitle>
+          <SheetTitle className="font-serif text-xl">Your Cart</SheetTitle>
           <SheetDescription>
-            {totalItems === 0 ? "Your bag is empty" : `${totalItems} item${totalItems !== 1 ? 's' : ''} in your bag`}
+            {totalItems === 0 ? "Your cart is empty" : `${totalItems} item${totalItems !== 1 ? 's' : ''} in your cart`}
           </SheetDescription>
         </SheetHeader>
         
@@ -53,7 +53,7 @@ export function CartDrawer() {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <ShoppingBag className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">Your bag is empty</p>
+                <p className="text-muted-foreground">Your cart is empty</p>
               </div>
             </div>
           ) : (

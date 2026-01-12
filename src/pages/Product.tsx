@@ -74,17 +74,6 @@ export default function Product() {
     <div className="min-h-screen">
       <Header />
       <main className="pt-20 lg:pt-24">
-        {/* Back Link */}
-        <div className="container mx-auto px-6 pt-4">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to shop
-          </Link>
-        </div>
-
         {/* 1. Product Hero with images, trust, options, cart */}
         <ProductHero product={product} />
 
