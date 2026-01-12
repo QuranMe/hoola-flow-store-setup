@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 import collectionHeroImage from "@/assets/collection-hero-couple.jpg";
 const collectionInfo: Record<string, { title: string; description: string; query: string; hasSubsections?: boolean }> = {
@@ -96,13 +96,6 @@ export default function Collection() {
         {/* Collection Header */}
         <section className="gradient-hero-blue section-padding relative pb-20">
           <div className="container mx-auto px-6">
-            <Link 
-              to="/" 
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
               <div className="max-w-2xl">
                 <p className="section-label mb-4">Shop Collection</p>
