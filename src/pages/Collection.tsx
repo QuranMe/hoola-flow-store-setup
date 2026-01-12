@@ -8,9 +8,11 @@ import { Loader2 } from "lucide-react";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 import collectionHeroImage from "@/assets/collection-hero-couple.jpg";
 import collectionHeroPerformance from "@/assets/collection-hero-performance.png";
+import collectionHeroAll from "@/assets/collection-hero-all.png";
 
 const collectionHeroImages: Record<string, string> = {
   performance: collectionHeroPerformance,
+  all: collectionHeroAll,
 };
 
 const collectionInfo: Record<string, { title: string; description: string; query: string; hasSubsections?: boolean }> = {
