@@ -37,7 +37,7 @@ export default function Collection() {
 
   const collection = collectionInfo[slug || ""] || {
     title: "All Products",
-    description: "Browse our complete collection of compression activewear.",
+    description: "Explore our full range of recovery and performance compression essentials.",
     query: undefined,
   };
 
