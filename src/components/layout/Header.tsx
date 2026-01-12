@@ -7,7 +7,7 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import logoBlackBlue from "@/assets/logo-black-blue.png";
 import logoWhiteBlue from "@/assets/logo-white-blue.png";
 const promoMessages = [
-  "Free Shipping",
+  "⛟ Free Shipping",
   "New Performance Collection Available",
   "Save up to $60 on Bundles this Month",
 ];
