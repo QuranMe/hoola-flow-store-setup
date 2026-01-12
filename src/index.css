@@ -150,7 +150,7 @@
   }
 
   .gradient-hero-blue {
-    background-color: hsl(var(--primary));
+    background-color: hsl(0 0% 0%);
   }
 
   /* Press ticker animation */
