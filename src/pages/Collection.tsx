@@ -4,7 +4,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
-import { Loader2, SlidersHorizontal, ChevronDown } from "lucide-react";
+import { Loader2, SlidersHorizontal, Search, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 import {
   Select,
@@ -46,6 +47,7 @@ export default function Collection() {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<SortOption>("featured");
   const [filterBy, setFilterBy] = useState<FilterOption>("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const collection = collectionInfo[slug || ""] || {
     title: "All Products",
@@ -126,14 +128,25 @@ export default function Collection() {
   const filteredProducts = useMemo(() => {
     let filtered = products;
     
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(p => 
+        p.node.title.toLowerCase().includes(query) ||
+        p.node.description?.toLowerCase().includes(query) ||
+        p.node.handle?.toLowerCase().includes(query)
+      );
+    }
+    
+    // Apply body category filter
     if (filterBy === "upper-body") {
-      filtered = products.filter(p => categorizeProduct(p) === "upper");
+      filtered = filtered.filter(p => categorizeProduct(p) === "upper");
     } else if (filterBy === "lower-body") {
-      filtered = products.filter(p => categorizeProduct(p) === "lower");
+      filtered = filtered.filter(p => categorizeProduct(p) === "lower");
     }
     
     return sortProducts(filtered);
-  }, [products, filterBy, sortBy]);
+  }, [products, filterBy, sortBy, searchQuery]);
 
   // Separate products into Upper Body and Lower Body categories (for subsections)
   const { upperBodyProducts, lowerBodyProducts, otherProducts } = useMemo(() => {
@@ -202,39 +215,62 @@ export default function Collection() {
         {/* Products Grid */}
         <section className="section-padding gradient-subtle">
           <div className="container mx-auto px-6">
-            {/* Filter and Sort Controls */}
+            {/* Filter, Sort, and Search Controls */}
             {!loading && products.length > 0 && !collection.hasSubsections && (
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <SlidersHorizontal className="h-4 w-4" />
-                  <span>{filteredProducts.length} products</span>
+              <div className="space-y-4 mb-8">
+                {/* Search Bar */}
+                <div className="relative max-w-md">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 pr-10 bg-background"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
-                <div className="flex flex-wrap items-center gap-3">
-                  {/* Filter */}
-                  <Select value={filterBy} onValueChange={(value: FilterOption) => setFilterBy(value)}>
-                    <SelectTrigger className="w-[160px] bg-background">
-                      <SelectValue placeholder="Filter by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Products</SelectItem>
-                      <SelectItem value="upper-body">Upper Body</SelectItem>
-                      <SelectItem value="lower-body">Lower Body</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  
-                  {/* Sort */}
-                  <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
-                    <SelectTrigger className="w-[180px] bg-background">
-                      <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="featured">Featured</SelectItem>
-                      <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                      <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                      <SelectItem value="name-asc">Name: A to Z</SelectItem>
-                      <SelectItem value="name-desc">Name: Z to A</SelectItem>
-                    </SelectContent>
-                  </Select>
+                
+                {/* Filter and Sort Row */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <SlidersHorizontal className="h-4 w-4" />
+                    <span>{filteredProducts.length} products</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {/* Filter */}
+                    <Select value={filterBy} onValueChange={(value: FilterOption) => setFilterBy(value)}>
+                      <SelectTrigger className="w-[160px] bg-background">
+                        <SelectValue placeholder="Filter by" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Products</SelectItem>
+                        <SelectItem value="upper-body">Upper Body</SelectItem>
+                        <SelectItem value="lower-body">Lower Body</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    
+                    {/* Sort */}
+                    <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
+                      <SelectTrigger className="w-[180px] bg-background">
+                        <SelectValue placeholder="Sort by" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="featured">Featured</SelectItem>
+                        <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                        <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                        <SelectItem value="name-asc">Name: A to Z</SelectItem>
+                        <SelectItem value="name-desc">Name: Z to A</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
             )}
@@ -323,9 +359,12 @@ export default function Collection() {
               </div>
             ) : filteredProducts.length === 0 ? (
               <div className="text-center py-20 bg-secondary/50 rounded-2xl">
-                <p className="text-lg text-muted-foreground mb-2">No products match your filters</p>
+                <p className="text-lg text-muted-foreground mb-2">No products match your search</p>
                 <button 
-                  onClick={() => setFilterBy("all")} 
+                  onClick={() => {
+                    setFilterBy("all");
+                    setSearchQuery("");
+                  }} 
                   className="text-sm text-primary hover:underline"
                 >
                   Clear filters
