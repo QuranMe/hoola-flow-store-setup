@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { fetchProducts, ShopifyProduct, CartItem } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { Button } from "@/components/ui/button";
-import { Plus, Loader2 } from "lucide-react";
+import { Plus, Loader2, X } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface CartUpsellsProps {
   cartItems: CartItem[];
@@ -12,6 +17,8 @@ interface CartUpsellsProps {
 export function CartUpsells({ cartItems }: CartUpsellsProps) {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [openPopoverId, setOpenPopoverId] = useState<string | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, Record<string, string>>>({});
   const addItem = useCartStore((state) => state.addItem);
 
   // Get IDs of products already in cart
@@ -36,17 +43,65 @@ export function CartUpsells({ cartItems }: CartUpsellsProps) {
     loadUpsells();
   }, [cartProductIds.join(",")]);
 
+  const handleOptionSelect = (productId: string, optionName: string, value: string) => {
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [productId]: {
+        ...prev[productId],
+        [optionName]: value,
+      },
+    }));
+  };
+
+  const findMatchingVariant = (product: ShopifyProduct) => {
+    const productOptions = selectedOptions[product.node.id] || {};
+    return product.node.variants.edges.find(({ node: variant }) => {
+      return variant.selectedOptions.every(
+        (opt) => productOptions[opt.name] === opt.value
+      );
+    })?.node;
+  };
+
+  const allOptionsSelected = (product: ShopifyProduct) => {
+    const productOptions = selectedOptions[product.node.id] || {};
+    return product.node.options?.every((opt) => productOptions[opt.name]) ?? false;
+  };
+
+  const hasOptions = (product: ShopifyProduct) => {
+    return product.node.options && product.node.options.length > 0;
+  };
+
   const handleQuickAdd = (product: ShopifyProduct) => {
-    const firstVariant = product.node.variants.edges[0]?.node;
-    if (!firstVariant) return;
+    if (hasOptions(product)) {
+      setOpenPopoverId(product.node.id);
+    } else {
+      addToCart(product, product.node.variants.edges[0]?.node);
+    }
+  };
+
+  const handleAddWithOptions = (product: ShopifyProduct) => {
+    const variant = findMatchingVariant(product);
+    if (variant) {
+      addToCart(product, variant);
+      setOpenPopoverId(null);
+      setSelectedOptions((prev) => {
+        const updated = { ...prev };
+        delete updated[product.node.id];
+        return updated;
+      });
+    }
+  };
+
+  const addToCart = (product: ShopifyProduct, variant: ShopifyProduct["node"]["variants"]["edges"][0]["node"] | undefined) => {
+    if (!variant) return;
 
     addItem({
       product,
-      variantId: firstVariant.id,
-      variantTitle: firstVariant.title,
-      price: firstVariant.price,
+      variantId: variant.id,
+      variantTitle: variant.title,
+      price: variant.price,
       quantity: 1,
-      selectedOptions: firstVariant.selectedOptions || [],
+      selectedOptions: variant.selectedOptions || [],
     });
 
     toast.success("Added to cart", {
@@ -75,6 +130,7 @@ export function CartUpsells({ cartItems }: CartUpsellsProps) {
           const firstImage = product.node.images.edges[0]?.node;
           const price = product.node.priceRange.minVariantPrice;
           const compareAtPrice = parseFloat(price.amount) * 1.2;
+          const productHasOptions = hasOptions(product);
 
           return (
             <div
@@ -109,15 +165,74 @@ export function CartUpsells({ cartItems }: CartUpsellsProps) {
                 </div>
               </div>
 
-              {/* Quick Add Button */}
-              <Button
-                size="sm"
-                variant="outline"
-                className="h-8 w-8 p-0 flex-shrink-0"
-                onClick={() => handleQuickAdd(product)}
+              {/* Quick Add Button with Popover */}
+              <Popover
+                open={openPopoverId === product.node.id}
+                onOpenChange={(open) => setOpenPopoverId(open ? product.node.id : null)}
               >
-                <Plus className="h-4 w-4" />
-              </Button>
+                <PopoverTrigger asChild>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-8 w-8 p-0 flex-shrink-0"
+                    onClick={() => handleQuickAdd(product)}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                {productHasOptions && (
+                  <PopoverContent
+                    className="w-56 p-3 bg-background border border-border shadow-lg z-50"
+                    align="end"
+                    side="top"
+                    sideOffset={8}
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium text-xs">Select Size</h4>
+                        <button
+                          onClick={() => setOpenPopoverId(null)}
+                          className="text-muted-foreground hover:text-foreground"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      {product.node.options?.map((option) => (
+                        <div key={option.name}>
+                          <label className="block text-[10px] font-medium text-muted-foreground mb-1.5">
+                            {option.name}
+                          </label>
+                          <div className="flex flex-wrap gap-1">
+                            {option.values.map((value) => (
+                              <button
+                                key={value}
+                                onClick={() => handleOptionSelect(product.node.id, option.name, value)}
+                                className={`px-2 py-1 text-[10px] border rounded transition-all ${
+                                  selectedOptions[product.node.id]?.[option.name] === value
+                                    ? "border-primary bg-primary text-primary-foreground font-medium"
+                                    : "border-border hover:border-primary bg-background"
+                                }`}
+                              >
+                                {value}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+
+                      <Button
+                        size="sm"
+                        onClick={() => handleAddWithOptions(product)}
+                        disabled={!allOptionsSelected(product)}
+                        className="w-full text-xs h-8"
+                      >
+                        Add to Cart
+                      </Button>
+                    </div>
+                  </PopoverContent>
+                )}
+              </Popover>
             </div>
           );
         })}
