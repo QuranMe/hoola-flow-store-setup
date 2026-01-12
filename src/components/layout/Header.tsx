@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingBag, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cartStore";
@@ -16,6 +16,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
   const totalItems = useCartStore((state) => state.getTotalItems());
   const setCartOpen = useCartStore((state) => state.setOpen);
 
@@ -85,9 +86,13 @@ export function Header() {
               <Link 
                 to="/collections/recovery" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
-                  scrolled 
-                    ? "bg-background text-foreground hover:bg-background/90" 
-                    : "bg-foreground text-background hover:bg-foreground/90"
+                  location.pathname === "/collections/recovery"
+                    ? scrolled 
+                      ? "bg-background text-foreground" 
+                      : "bg-foreground text-background"
+                    : scrolled 
+                      ? "text-background/70 hover:text-background" 
+                      : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 RECOVERY
@@ -95,9 +100,13 @@ export function Header() {
               <Link 
                 to="/collections/performance" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
-                  scrolled 
-                    ? "bg-background text-foreground hover:bg-background/90" 
-                    : "bg-foreground text-background hover:bg-foreground/90"
+                  location.pathname === "/collections/performance"
+                    ? scrolled 
+                      ? "bg-background text-foreground" 
+                      : "bg-foreground text-background"
+                    : scrolled 
+                      ? "text-background/70 hover:text-background" 
+                      : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 PERFORMANCE
@@ -151,14 +160,22 @@ export function Header() {
             <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
               <Link 
                 to="/collections/recovery" 
-                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
+                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
+                  location.pathname === "/collections/recovery"
+                    ? "bg-foreground text-background"
+                    : "text-foreground border border-foreground"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 RECOVERY
               </Link>
               <Link 
                 to="/collections/performance" 
-                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
+                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
+                  location.pathname === "/collections/performance"
+                    ? "bg-foreground text-background"
+                    : "text-foreground border border-foreground"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 PERFORMANCE
