@@ -73,7 +73,7 @@ export default function Product() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20 lg:pt-24">
+      <main>
         {/* 1. Product Hero with images, trust, options, cart */}
         <ProductHero product={product} />
 
