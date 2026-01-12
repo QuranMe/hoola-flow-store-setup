@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import { ShoppingBag, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
+import { CartUpsells } from "./CartUpsells";
 
 export function CartDrawer() {
   const { 
@@ -115,6 +116,9 @@ export function CartDrawer() {
                     </div>
                   ))}
                 </div>
+
+                {/* Upsells Section */}
+                <CartUpsells cartItems={items} />
               </div>
               
               <div className="flex-shrink-0 space-y-4 pt-6 border-t bg-background mt-6">
