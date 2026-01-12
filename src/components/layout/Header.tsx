@@ -12,6 +12,12 @@ const promoMessages = [
   "Save up to $60 on Bundles this Month",
 ];
 
+const navLinks = [
+  { path: "/collections/recovery", label: "RECOVERY" },
+  { path: "/collections/performance", label: "PERFORMANCE" },
+  { path: "/contact", label: "CONTACT" },
+];
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
@@ -83,40 +89,21 @@ export function Header() {
 
             {/* Navigation - Desktop */}
             <nav className="hidden lg:flex items-center gap-2">
-              <Link 
-                to="/collections/recovery" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
-                  location.pathname === "/collections/recovery"
-                    ? "bg-primary text-primary-foreground"
-                    : scrolled 
-                      ? "text-background/70 hover:text-background" 
-                      : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                RECOVERY
-              </Link>
-              <Link 
-                to="/collections/performance" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
-                  location.pathname === "/collections/performance"
-                    ? "bg-primary text-primary-foreground"
-                    : scrolled 
-                      ? "text-background/70 hover:text-background" 
-                      : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                PERFORMANCE
-              </Link>
-              <Link 
-                to="/contact" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] transition-colors px-4 py-2 ${
-                  scrolled 
-                    ? "text-background/70 hover:text-background" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                CONTACT
-              </Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
+                    location.pathname === link.path || location.pathname.startsWith(link.path + "/")
+                      ? "bg-primary text-primary-foreground"
+                      : scrolled
+                        ? "text-background/70 hover:text-background"
+                        : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
             {/* Right actions */}
@@ -154,35 +141,20 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-border bg-background">
             <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
-              <Link 
-                to="/collections/recovery" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
-                  location.pathname === "/collections/recovery"
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground border border-foreground"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                RECOVERY
-              </Link>
-              <Link 
-                to="/collections/performance" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
-                  location.pathname === "/collections/performance"
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground border border-foreground"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                PERFORMANCE
-              </Link>
-              <Link 
-                to="/contact" 
-                className="text-xs font-medium uppercase tracking-[0.1em] py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                CONTACT
-              </Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
+                    location.pathname === link.path || location.pathname.startsWith(link.path + "/")
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground border border-foreground"
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
         )}
