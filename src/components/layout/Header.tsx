@@ -87,9 +87,7 @@ export function Header() {
                 to="/collections/recovery" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
                   location.pathname === "/collections/recovery"
-                    ? scrolled 
-                      ? "bg-background text-foreground" 
-                      : "bg-foreground text-background"
+                    ? "bg-primary text-primary-foreground"
                     : scrolled 
                       ? "text-background/70 hover:text-background" 
                       : "text-muted-foreground hover:text-foreground"
@@ -101,9 +99,7 @@ export function Header() {
                 to="/collections/performance" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
                   location.pathname === "/collections/performance"
-                    ? scrolled 
-                      ? "bg-background text-foreground" 
-                      : "bg-foreground text-background"
+                    ? "bg-primary text-primary-foreground"
                     : scrolled 
                       ? "text-background/70 hover:text-background" 
                       : "text-muted-foreground hover:text-foreground"
@@ -162,7 +158,7 @@ export function Header() {
                 to="/collections/recovery" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
                   location.pathname === "/collections/recovery"
-                    ? "bg-foreground text-background"
+                    ? "bg-primary text-primary-foreground"
                     : "text-foreground border border-foreground"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
@@ -173,7 +169,7 @@ export function Header() {
                 to="/collections/performance" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center ${
                   location.pathname === "/collections/performance"
-                    ? "bg-foreground text-background"
+                    ? "bg-primary text-primary-foreground"
                     : "text-foreground border border-foreground"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
