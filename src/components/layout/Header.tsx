@@ -83,31 +83,21 @@ export function Header() {
             {/* Navigation - Desktop */}
             <nav className="hidden lg:flex items-center gap-2">
               <Link 
-                to="/collections/all"
+                to="/collections/recovery" 
                 className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
                   scrolled 
                     ? "bg-background text-foreground hover:bg-background/90" 
                     : "bg-foreground text-background hover:bg-foreground/90"
                 }`}
               >
-                SHOP
-              </Link>
-              <Link 
-                to="/collections/recovery" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] transition-colors px-4 py-2 ${
-                  scrolled 
-                    ? "text-background/70 hover:text-background" 
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
                 RECOVERY
               </Link>
               <Link 
                 to="/collections/performance" 
-                className={`text-xs font-medium uppercase tracking-[0.1em] transition-colors px-4 py-2 ${
+                className={`text-xs font-medium uppercase tracking-[0.1em] px-5 py-2.5 rounded-full transition-colors ${
                   scrolled 
-                    ? "text-background/70 hover:text-background" 
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-background text-foreground hover:bg-background/90" 
+                    : "bg-foreground text-background hover:bg-foreground/90"
                 }`}
               >
                 PERFORMANCE
@@ -160,22 +150,15 @@ export function Header() {
           <div className="lg:hidden border-t border-border bg-background">
             <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
               <Link 
-                to="/collections/all"
-                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                SHOP
-              </Link>
-              <Link 
                 to="/collections/recovery" 
-                className="text-xs font-medium uppercase tracking-[0.1em] py-2 border-b border-border"
+                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 RECOVERY
               </Link>
               <Link 
                 to="/collections/performance" 
-                className="text-xs font-medium uppercase tracking-[0.1em] py-2 border-b border-border"
+                className="bg-foreground text-background text-xs font-medium uppercase tracking-[0.1em] px-5 py-3 rounded-full text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 PERFORMANCE
