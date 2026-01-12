@@ -7,6 +7,12 @@ import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { Loader2 } from "lucide-react";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 import collectionHeroImage from "@/assets/collection-hero-couple.jpg";
+import collectionHeroPerformance from "@/assets/collection-hero-performance.png";
+
+const collectionHeroImages: Record<string, string> = {
+  performance: collectionHeroPerformance,
+};
+
 const collectionInfo: Record<string, { title: string; description: string; query: string; hasSubsections?: boolean }> = {
   recovery: {
     title: "Recovery",
@@ -106,8 +112,8 @@ export default function Collection() {
               </div>
               <div className="lg:w-1/2 flex-shrink-0">
                 <img 
-                  src={collectionHeroImage} 
-                  alt="Couple relaxing while wearing compression sleeves"
+                  src={collectionHeroImages[slug || ""] || collectionHeroImage} 
+                  alt={`${collection.title} collection`}
                   className="w-full h-auto rounded-2xl shadow-lg object-cover max-h-80 lg:max-h-96"
                 />
               </div>
