@@ -7,9 +7,9 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import logoBlackBlue from "@/assets/logo-black-blue.png";
 import logoWhiteBlue from "@/assets/logo-white-blue.png";
 const promoMessages = [
-  "✨ Free shipping on orders over $150 ✨",
-  "✨ Save up to $60 on bundles ✨",
-  "✨ New Recovery Collection Available ✨",
+  "Free Shipping",
+  "New Performance Collection Available",
+  "Save up to $60 on Bundles this Month",
 ];
 
 export function Header() {
