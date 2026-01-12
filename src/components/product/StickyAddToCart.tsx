@@ -58,7 +58,7 @@ export function StickyAddToCart({
       selectedOptions: currentVariant.selectedOptions,
     });
 
-    toast.success("Added to bag", {
+    toast.success("Added to cart", {
       description: `${product.title} x ${quantity}`,
       position: "top-center",
     });
@@ -125,7 +125,7 @@ export function StickyAddToCart({
             disabled={!currentVariant?.availableForSale}
           >
             <ShoppingBag className="h-4 w-4" />
-            <span className="hidden sm:inline">Add to Bag</span>
+            <span className="hidden sm:inline">Add to Cart</span>
             <span className="sm:hidden">${(parseFloat(price) * quantity).toFixed(2)}</span>
           </Button>
         </div>

@@ -90,7 +90,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       selectedOptions: variant.selectedOptions || [],
     });
 
-    toast.success("Added to bag", {
+    toast.success("Added to cart", {
       description: node.title,
       position: "top-center",
     });
@@ -194,7 +194,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                   disabled={!allOptionsSelected()}
                   className="w-full btn-primary text-xs disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Add to Bag
+                  Add to Cart
                 </button>
               </div>
             </PopoverContent>
@@ -238,7 +238,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               onClick={handleAddToCartButton}
               className="w-full btn-primary mt-3 text-[11px]"
             >
-              Add to Bag
+              Add to Cart
             </button>
           </PopoverTrigger>
         </Popover>

@@ -64,7 +64,7 @@ export function ProductHero({ product }: ProductHeroProps) {
       selectedOptions: currentVariant.selectedOptions,
     });
 
-    toast.success("Added to bag", {
+    toast.success("Added to cart", {
       description: `${product.title} x ${quantity}`,
       position: "top-center",
     });
@@ -229,7 +229,7 @@ export function ProductHero({ product }: ProductHeroProps) {
               >
                 <ShoppingBag className="h-5 w-5" />
                 {currentVariant?.availableForSale
-                  ? `Add to Bag - $${(parseFloat(price) * quantity).toFixed(2)}`
+                  ? `Add to Cart - $${(parseFloat(price) * quantity).toFixed(2)}`
                   : "Out of Stock"}
               </Button>
             </div>
