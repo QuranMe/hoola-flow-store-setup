@@ -8,7 +8,7 @@ import logoBlackBlue from "@/assets/logo-black-blue.png";
 import logoWhiteBlue from "@/assets/logo-white-blue.png";
 const promoMessages = [
   "✨ Free shipping on orders over $150 ✨",
-  "✨ Save up to $50 on bundles ✨",
+  "✨ Save up to $60 on bundles ✨",
   "✨ New Recovery Collection Available ✨",
 ];
 
