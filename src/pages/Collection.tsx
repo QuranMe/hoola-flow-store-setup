@@ -24,6 +24,7 @@ const collectionInfo: Record<string, { title: string; description: string; query
     title: "Performance",
     description: "Engineered for peak athletic performance. Targeted compression supports muscles during intense activity.",
     query: "tag:performance",
+    hasSubsections: true,
   },
 };
 
@@ -67,6 +68,8 @@ export default function Collection() {
       if (
         tags.includes("lower-body") ||
         title.includes("leg") ||
+        title.includes("legging") ||
+        title.includes("short") ||
         title.includes("calf") ||
         title.includes("ankle") ||
         title.includes("foot") ||
