@@ -4,8 +4,15 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
-import { Loader2 } from "lucide-react";
+import { Loader2, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import collectionHeroImage from "@/assets/collection-hero-couple.jpg";
 import collectionHeroPerformance from "@/assets/collection-hero-performance.png";
 import collectionHeroAll from "@/assets/collection-hero-all.png";
@@ -30,10 +37,15 @@ const collectionInfo: Record<string, { title: string; description: string; query
   },
 };
 
+type SortOption = "featured" | "price-asc" | "price-desc" | "name-asc" | "name-desc";
+type FilterOption = "all" | "upper-body" | "lower-body";
+
 export default function Collection() {
   const { slug } = useParams<{ slug: string }>();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<SortOption>("featured");
+  const [filterBy, setFilterBy] = useState<FilterOption>("all");
 
   const collection = collectionInfo[slug || ""] || {
     title: "All Products",
@@ -56,49 +68,94 @@ export default function Collection() {
     loadProducts();
   }, [slug, collection.query]);
 
-  // Separate products into Upper Body and Lower Body categories
+  // Helper function to categorize a product
+  const categorizeProduct = (product: ShopifyProduct): "upper" | "lower" | "other" => {
+    const tags = product.node.handle?.toLowerCase() || "";
+    const title = product.node.title?.toLowerCase() || "";
+    
+    if (
+      tags.includes("lower-body") ||
+      title.includes("leg") ||
+      title.includes("legging") ||
+      title.includes("short") ||
+      title.includes("calf") ||
+      title.includes("ankle") ||
+      title.includes("foot") ||
+      title.includes("sock") ||
+      title.includes("knee")
+    ) {
+      return "lower";
+    }
+    if (
+      tags.includes("upper-body") ||
+      title.includes("arm") ||
+      title.includes("elbow") ||
+      title.includes("wrist") ||
+      title.includes("glove") ||
+      title.includes("hand")
+    ) {
+      return "upper";
+    }
+    return "other";
+  };
+
+  // Sort function
+  const sortProducts = (items: ShopifyProduct[]): ShopifyProduct[] => {
+    const sorted = [...items];
+    switch (sortBy) {
+      case "price-asc":
+        return sorted.sort((a, b) => 
+          parseFloat(a.node.priceRange.minVariantPrice.amount) - 
+          parseFloat(b.node.priceRange.minVariantPrice.amount)
+        );
+      case "price-desc":
+        return sorted.sort((a, b) => 
+          parseFloat(b.node.priceRange.minVariantPrice.amount) - 
+          parseFloat(a.node.priceRange.minVariantPrice.amount)
+        );
+      case "name-asc":
+        return sorted.sort((a, b) => a.node.title.localeCompare(b.node.title));
+      case "name-desc":
+        return sorted.sort((a, b) => b.node.title.localeCompare(a.node.title));
+      default:
+        return sorted;
+    }
+  };
+
+  // Filtered and sorted products
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
+    
+    if (filterBy === "upper-body") {
+      filtered = products.filter(p => categorizeProduct(p) === "upper");
+    } else if (filterBy === "lower-body") {
+      filtered = products.filter(p => categorizeProduct(p) === "lower");
+    }
+    
+    return sortProducts(filtered);
+  }, [products, filterBy, sortBy]);
+
+  // Separate products into Upper Body and Lower Body categories (for subsections)
   const { upperBodyProducts, lowerBodyProducts, otherProducts } = useMemo(() => {
     const upper: ShopifyProduct[] = [];
     const lower: ShopifyProduct[] = [];
     const other: ShopifyProduct[] = [];
 
-    products.forEach((product) => {
-      const tags = product.node.handle?.toLowerCase() || "";
-      const title = product.node.title?.toLowerCase() || "";
-      
-      // Check for lower body keywords
-      if (
-        tags.includes("lower-body") ||
-        title.includes("leg") ||
-        title.includes("legging") ||
-        title.includes("short") ||
-        title.includes("calf") ||
-        title.includes("ankle") ||
-        title.includes("foot") ||
-        title.includes("sock") ||
-        title.includes("knee")
-      ) {
+    const productsToProcess = sortProducts(products);
+
+    productsToProcess.forEach((product) => {
+      const category = categorizeProduct(product);
+      if (category === "lower") {
         lower.push(product);
-      }
-      // Check for upper body keywords
-      else if (
-        tags.includes("upper-body") ||
-        title.includes("arm") ||
-        title.includes("elbow") ||
-        title.includes("wrist") ||
-        title.includes("glove") ||
-        title.includes("hand")
-      ) {
+      } else if (category === "upper") {
         upper.push(product);
-      }
-      // Everything else
-      else {
+      } else {
         other.push(product);
       }
     });
 
     return { upperBodyProducts: upper, lowerBodyProducts: lower, otherProducts: other };
-  }, [products]);
+  }, [products, sortBy]);
 
   return (
     <div className="min-h-screen">
@@ -145,6 +202,43 @@ export default function Collection() {
         {/* Products Grid */}
         <section className="section-padding gradient-subtle">
           <div className="container mx-auto px-6">
+            {/* Filter and Sort Controls */}
+            {!loading && products.length > 0 && !collection.hasSubsections && (
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <SlidersHorizontal className="h-4 w-4" />
+                  <span>{filteredProducts.length} products</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Filter */}
+                  <Select value={filterBy} onValueChange={(value: FilterOption) => setFilterBy(value)}>
+                    <SelectTrigger className="w-[160px] bg-background">
+                      <SelectValue placeholder="Filter by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Products</SelectItem>
+                      <SelectItem value="upper-body">Upper Body</SelectItem>
+                      <SelectItem value="lower-body">Lower Body</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  
+                  {/* Sort */}
+                  <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
+                    <SelectTrigger className="w-[180px] bg-background">
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="featured">Featured</SelectItem>
+                      <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                      <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                      <SelectItem value="name-asc">Name: A to Z</SelectItem>
+                      <SelectItem value="name-desc">Name: Z to A</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            )}
+
             {loading ? (
               <div className="flex items-center justify-center py-20">
                 <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
@@ -227,9 +321,19 @@ export default function Collection() {
                   </AnimatedSection>
                 )}
               </div>
+            ) : filteredProducts.length === 0 ? (
+              <div className="text-center py-20 bg-secondary/50 rounded-2xl">
+                <p className="text-lg text-muted-foreground mb-2">No products match your filters</p>
+                <button 
+                  onClick={() => setFilterBy("all")} 
+                  className="text-sm text-primary hover:underline"
+                >
+                  Clear filters
+                </button>
+              </div>
             ) : (
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                {products.map((product, index) => (
+                {filteredProducts.map((product, index) => (
                   <ProductCard 
                     key={product.node.id} 
                     product={product}
