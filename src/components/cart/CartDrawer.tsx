@@ -25,6 +25,13 @@ export function CartDrawer() {
   
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
+  
+  // Calculate savings (original price is 20% higher than current price)
+  const totalSavings = items.reduce((sum, item) => {
+    const currentPrice = parseFloat(item.price.amount) * item.quantity;
+    const originalPrice = currentPrice * 1.25; // Original is 25% more (which means current is ~20% off)
+    return sum + (originalPrice - currentPrice);
+  }, 0);
 
   const handleCheckout = async () => {
     try {
@@ -121,13 +128,22 @@ export function CartDrawer() {
                 <CartUpsells cartItems={items} />
               </div>
               
-              <div className="flex-shrink-0 space-y-4 pt-6 border-t bg-background mt-6">
+              <div className="flex-shrink-0 space-y-3 pt-6 border-t bg-background mt-6">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Subtotal</span>
                   <span className="text-lg font-medium">
                     ${totalPrice.toFixed(2)}
                   </span>
                 </div>
+                
+                {totalSavings > 0 && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-muted-foreground">You saved</span>
+                    <span className="text-sm text-muted-foreground">
+                      ${totalSavings.toFixed(2)}
+                    </span>
+                  </div>
+                )}
                 
                 <Button 
                   onClick={handleCheckout}
