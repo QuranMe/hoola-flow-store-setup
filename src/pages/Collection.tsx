@@ -94,7 +94,7 @@ export default function Collection() {
       <Header />
       <main>
         {/* Collection Header */}
-        <section className="gradient-hero-blue section-padding">
+        <section className="gradient-hero-blue section-padding relative pb-20">
           <div className="container mx-auto px-6">
             <Link 
               to="/" 
@@ -118,6 +118,22 @@ export default function Collection() {
                   className="w-full h-auto rounded-2xl shadow-lg object-cover max-h-80 lg:max-h-96"
                 />
               </div>
+            </div>
+          </div>
+          
+          {/* Trust Ticker */}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-[#007a91] via-[#0097b2] to-[#007a91] py-4 overflow-hidden">
+            <div className="flex animate-ticker whitespace-nowrap">
+              {[...Array(2)].map((_, setIndex) => (
+                <div key={setIndex} className="flex items-center gap-20 px-10">
+                  <span className="font-serif text-xl text-white">60 DAY MONEY-BACK GUARANTEE</span>
+                  <span className="text-white/60">•</span>
+                  <span className="font-serif text-xl text-white">UP TO 60% OFF BUNDLES</span>
+                  <span className="text-white/60">•</span>
+                  <span className="font-serif text-xl text-white">FREE SHIPPING</span>
+                  <span className="text-white/60">•</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
