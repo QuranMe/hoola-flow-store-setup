@@ -199,6 +199,17 @@ export function ProductHero({ product }: ProductHeroProps) {
               </div>
             </div>
 
+            {/* Urgency Block */}
+            <div className="flex items-center gap-2 mb-4 text-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-400"></span>
+              </span>
+              <span className="text-foreground/80">
+                <span className="font-medium text-orange-600">Only 7 left</span> at this price
+              </span>
+            </div>
+
             {/* Quantity + Add to Cart */}
             <div ref={ctaRef} className="flex gap-4 mb-4">
               <div className="flex items-center border border-border rounded-lg">
