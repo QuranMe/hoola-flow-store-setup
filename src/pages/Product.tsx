@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { fetchProductByHandle, ShopifyProduct } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { Loader2, ArrowLeft } from "lucide-react";
 
 // Product page sections
@@ -15,6 +16,40 @@ import { BeforeAfterSection } from "@/components/product/BeforeAfterSection";
 import { ReviewsCarousel } from "@/components/product/ReviewsCarousel";
 import { ProductFAQ } from "@/components/product/ProductFAQ";
 
+// Helper to convert local DB product to Shopify format
+function convertLocalToProductFormat(localProduct: any): ShopifyProduct["node"] {
+  return {
+    id: localProduct.id,
+    title: localProduct.title,
+    handle: localProduct.handle,
+    description: localProduct.description || "",
+    tags: localProduct.tags || [],
+    priceRange: {
+      minVariantPrice: {
+        amount: String(localProduct.price),
+        currencyCode: "USD",
+      },
+    },
+    images: {
+      edges: (localProduct.images || []).map((url: string) => ({
+        node: { url, altText: localProduct.title },
+      })),
+    },
+    variants: {
+      edges: (localProduct.variants || [{ id: localProduct.id, title: "Default", price: localProduct.price }]).map((v: any) => ({
+        node: {
+          id: v.id || localProduct.id,
+          title: v.title || "Default",
+          price: { amount: String(v.price || localProduct.price), currencyCode: "USD" },
+          selectedOptions: v.selectedOptions || [],
+          availableForSale: true,
+        },
+      })),
+    },
+    options: localProduct.options || [],
+  };
+}
+
 export default function Product() {
   const { handle } = useParams<{ handle: string }>();
   const [product, setProduct] = useState<ShopifyProduct["node"] | null>(null);
@@ -24,9 +59,32 @@ export default function Product() {
     async function loadProduct() {
       if (!handle) return;
       setLoading(true);
+      
+      // Try Shopify first
       try {
         const data = await fetchProductByHandle(handle);
-        setProduct(data);
+        if (data) {
+          setProduct(data);
+          setLoading(false);
+          return;
+        }
+      } catch (error) {
+        console.error("Failed to fetch from Shopify:", error);
+      }
+      
+      // Fallback to local database
+      try {
+        const { data: localProduct, error } = await supabase
+          .from("products")
+          .select("*")
+          .eq("handle", handle)
+          .maybeSingle();
+        
+        if (error) {
+          console.error("Failed to fetch local product:", error);
+        } else if (localProduct) {
+          setProduct(convertLocalToProductFormat(localProduct));
+        }
       } catch (error) {
         console.error("Failed to fetch product:", error);
       } finally {
