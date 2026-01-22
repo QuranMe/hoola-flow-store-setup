@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductCard } from "@/components/product/ProductCard";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { Loader2, SlidersHorizontal, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
@@ -41,6 +42,42 @@ const collectionInfo: Record<string, { title: string; description: string; query
 type SortOption = "featured" | "price-asc" | "price-desc" | "name-asc" | "name-desc";
 type FilterOption = "all" | "upper-body" | "lower-body";
 
+// Helper to convert local DB product to ShopifyProduct format
+function convertLocalToShopifyFormat(localProduct: any): ShopifyProduct {
+  return {
+    node: {
+      id: localProduct.id,
+      title: localProduct.title,
+      handle: localProduct.handle,
+      description: localProduct.description || "",
+      tags: localProduct.tags || [],
+      priceRange: {
+        minVariantPrice: {
+          amount: String(localProduct.price),
+          currencyCode: "USD",
+        },
+      },
+      images: {
+        edges: (localProduct.images || []).map((url: string) => ({
+          node: { url, altText: localProduct.title },
+        })),
+      },
+      variants: {
+        edges: (localProduct.variants || [{ id: localProduct.id, title: "Default", price: localProduct.price }]).map((v: any) => ({
+          node: {
+            id: v.id || localProduct.id,
+            title: v.title || "Default",
+            price: { amount: String(v.price || localProduct.price), currencyCode: "USD" },
+            selectedOptions: v.selectedOptions || [],
+            availableForSale: true,
+          },
+        })),
+      },
+      options: localProduct.options || [],
+    },
+  };
+}
+
 export default function Collection() {
   const { slug } = useParams<{ slug: string }>();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -59,8 +96,28 @@ export default function Collection() {
     async function loadProducts() {
       setLoading(true);
       try {
-        const data = await fetchProducts(20, collection.query);
-        setProducts(data);
+        // Fetch from Shopify
+        const shopifyData = await fetchProducts(20, collection.query);
+        
+        // Fetch from local database
+        let localQuery = supabase.from("products").select("*");
+        
+        // Filter by tag if collection has a query
+        if (slug && slug !== "all") {
+          localQuery = localQuery.contains("tags", [slug]);
+        }
+        
+        const { data: localData, error } = await localQuery;
+        
+        if (error) {
+          console.error("Failed to fetch local products:", error);
+        }
+        
+        // Convert local products to Shopify format and merge
+        const localProducts = (localData || []).map(convertLocalToShopifyFormat);
+        const allProducts = [...shopifyData, ...localProducts];
+        
+        setProducts(allProducts);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
