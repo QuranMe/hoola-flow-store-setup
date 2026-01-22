@@ -95,31 +95,36 @@ export default function Collection() {
   useEffect(() => {
     async function loadProducts() {
       setLoading(true);
+      let shopifyData: ShopifyProduct[] = [];
       try {
-        // Fetch from Shopify
-        const shopifyData = await fetchProducts(20, collection.query);
-        
+        // Fetch from Shopify (optional)
+        shopifyData = await fetchProducts(20, collection.query);
+      } catch (error) {
+        // IMPORTANT: don't block local products if Shopify is down/misconfigured
+        console.error("Failed to fetch Shopify products:", error);
+      }
+
+      try {
         // Fetch from local database
         let localQuery = supabase.from("products").select("*");
-        
-        // Filter by tag if collection has a query
+
+        // Filter by tag if we're on a specific collection
         if (slug && slug !== "all") {
           localQuery = localQuery.contains("tags", [slug]);
         }
-        
+
         const { data: localData, error } = await localQuery;
-        
+
         if (error) {
           console.error("Failed to fetch local products:", error);
         }
-        
-        // Convert local products to Shopify format and merge
+
         const localProducts = (localData || []).map(convertLocalToShopifyFormat);
-        const allProducts = [...shopifyData, ...localProducts];
-        
-        setProducts(allProducts);
+        setProducts([...shopifyData, ...localProducts]);
       } catch (error) {
-        console.error("Failed to fetch products:", error);
+        console.error("Failed to fetch local products:", error);
+        // Still show Shopify products if we have them
+        setProducts(shopifyData);
       } finally {
         setLoading(false);
       }
